@@ -1,5 +1,6 @@
 ##' Download Targets
 ##' @return data.frame in long format with days as rows, and time, site_id, variable, and observed as columns
+options(timeout = 300)
 download_targets <- function(){
   readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz", guess_max = 1e6)
 }
@@ -67,7 +68,7 @@ download_met_forecast <- function(forecast_date){
   met_future <- df_future |> 
     dplyr::filter(datetime >= lubridate::as_datetime(forecast_date), 
                   variable == "air_temperature") |> 
-    dplyr::collect() 
+    dplyr::collect()
   
   ## aggregate to daily
   met_future <- met_future %>% 
