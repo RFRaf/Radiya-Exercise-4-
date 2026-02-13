@@ -1,12 +1,11 @@
 ##' Download Targets
 ##' @return data.frame in long format with days as rows, and time, site_id, variable, and observed as columns
-options(timeout = 300)
 download_targets <- function(){
-  readr::read_csv("https://data.ecoforecast.org/neon4cast-targets/aquatics/aquatics-targets.csv.gz", guess_max = 1e6)
+  readr::read_csv("https://sdsc.osn.xsede.org/bio230014-bucket01/challenges/targets/project_id=neon4cast/duration=P1D/aquatics-targets.csv.gz", guess_max = 1e6)
 }
 
 ##' Download Site metadata
-##' @return metadata dataframe
+##' @return metadata dataframe 
 download_site_meta <- function(){
   site_data <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/neon4cast-targets/main/NEON_Field_Site_Metadata_20220412.csv") 
   site_data %>% filter(as.integer(aquatics) == 1)
