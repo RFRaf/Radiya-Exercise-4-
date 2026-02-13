@@ -67,7 +67,7 @@ download_met_forecast <- function(forecast_date){
   met_future <- df_future |> 
     dplyr::filter(datetime >= lubridate::as_datetime(forecast_date), 
                   variable == "air_temperature") |> 
-    dplyr::collect()
+    dplyr::collect() 
   
   ## aggregate to daily
   met_future <- met_future %>% 
